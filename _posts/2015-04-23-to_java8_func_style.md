@@ -5,34 +5,34 @@ title: "Jump from Java 7 to Java 8"
 
 ## {{ page.title }}
 
-После перехода нашей команды на 8-ую java (да, это случилось!), появилась мысль: "а не переписать ли мне некоторые участки кода одного из сервисов, используя новые возможности java 8..".
+After our team moved to java 8 (yes, it happened!), I've got the idea: "If I rewrite some pieces of one service using new powers of Java 8.."
 
-Допустим, у нас есть некий метод, который на основе списка документов агрегирует общую информацию по ним. Так выглядел бы стиль, к которому все привыкли за столь долгие годы:
-<pre><code>public List<Document> getDocumentsStatistics(List<Document> documents)
-    final List<Document> documentsStatistics = new ArrayList();
-    for (Document document : documents) {
-        final List<DocumentHashType> types = new ArrayList<DocumentHashType>();
-        for (DocumentHashType type : document.getDocumentType())
+For example, we have some method, which on the base of documents aggregates common imformation according to them. Here's what old style looked like:
+<pre><code><span class="java_keyword">public</span> List&lt;Document&gt; getDocumentsStatistics(List&lt;Document&gt; documents)
+    <span class="java_keyword">final</span> List&lt;Document&gt; documentsStatistics = <span class="java_keyword">new</span> ArrayList();
+    <span class="java_keyword">for</span> (Document document : documents) {
+        <span class="java_keyword">final</span> List&lt;DocumentHashType&gt; types = <span class="java_keyword">new</span> ArrayList&lt;DocumentHashType&gt;();
+        <span class="java_keyword">for</span> (DocumentHashType type : document.getDocumentType())
             types.add(type);
         DocumentStatistics documentStatistics = 
-        	new DocumentStatistics(
-                document.getName(),
-                document.getLocation(),
-                document.getSourceId(),
-                types,
-                document.getDateCreated());
+        	<span class="java_keyword">new</span> DocumentStatistics(
+                        document.getName(),
+                        document.getLocation(),
+                        document.getSourceId(),
+                        types,
+                        document.getDateCreated());
         documentsStatistics.add(documentStatistics);
     }
-    return documentsStatistics;
+    <span class="java_keyword">return</span> documentsStatistics;
 }
 </code></pre>
 
-Этот же метод в новом стиле:
-<pre><code>private List<DocumentStatistics> getDocumentsStatistics(Collection<Document> documents) {
-   return new ArrayList<DocumentStatistics>(
+This method in new style:
+<pre><code><span class="java_keyword">private</span> List&lt;DocumentStatistics&gt; getDocumentsStatistics(Collection&lt;Document&gt; documents) {
+   <span class="java_keyword">return new</span> ArrayList&lt;DocumentStatistics&gt;(
            documents
                .stream()
-               .map(x -> new DocumentStatistics(
+               .map(x -> <span class="java_keyword">new</span> DocumentStatistics(
                         x.getName(),
                         x.getLocation(),
                         x.getSourceId(),
@@ -43,21 +43,21 @@ title: "Jump from Java 7 to Java 8"
                .collect(Collectors.toList()));
 </code></pre>
 
-Весьма неплохо. Более кратко, избегаем mutable state.
+Not bad. More briefly, avoid mutable state.
 
-Идем далее. Необходимо получить группу по ее id. Как делали раньше:
-<pre><code>public DocumentGroup getDocumentGroupById(String id) {
-        for (Map.Entry<String, DocumentGroup> group:
+Next, we need take group for id. Early we did it so:
+<pre><code><span class="java_keyword">public</span> DocumentGroup getDocumentGroupById(String id) {
+        <span class="java_keyword">for</span> (Map.Entry&lt;String, DocumentGroup&gt; group:
         	documentGroups.entrySet()) {
-            if (group.getValue().getGroupId().getId() == id)
-                return group.getValue();
+            <span class="java_keyword">if</span> (group.getValue().getGroupId().getId() == id)
+                <span class="java_keyword">return</span> group.getValue();
         }
-        return null;
+        <span class="java_keyword">return</span> null;
     }
 </code></pre>
 
-Давайте преобразуем его:
-<pre><code>final DocumentGroup documentGroup = 
+Let's convert it:
+<pre><code><span class="java_keyword">final</span> DocumentGroup documentGroup = 
 	service.getKnowledgeBase()
                 .getDocumentGroups()
                 .stream()
