@@ -266,6 +266,15 @@ form {
 Full-Width Styles
 *******************************************************************************/
 
+.pschsch {
+  background-image: url("../images/pschsch.jpeg");
+  background-repeat: no-repeat;
+  background-size: 620px 620px;
+  background-attachment: fixed;
+  background-position: center;
+
+}
+
 .outer {
   width: 100%;
 }
