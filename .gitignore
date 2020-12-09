@@ -1,3 +1,4 @@
 serve
 build
 _site
+.jekyll-cache/
