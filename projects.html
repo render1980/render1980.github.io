@@ -4,14 +4,16 @@ title: Projects
 ---
 <h3>Projects</h3>
 <hr></hr>
-
-<div class="projects-item">
-<h4>Grassroots Assistant Telegram Bot</h4>
-<div class="projects-image">
-	<a href="" title="Grassroots Assistant Telegram Bot">
-		<img src="./images/grassroots-assistant.png">
-	</a>
-</div>
-<p>Bot which helps you to communicate with other users creating/searching groups within a location radius.</p>
-</div>
+{% for proj in site.projects %}
+<p><a href="{{ proj.url }}">{{ proj.title }}</p>
+{% endfor %}
+<!--<div class="projects-item">-->
+<!--<h4>Grassroots Assistant Telegram Bot</h4>-->
+<!--<div class="projects-image">-->
+	<!--<a href="./projects/grassroot_assistant.html" title="Grassroots Assistant Telegram Bot">-->
+		<!--<img src="./images/grassroots-assistant.png">-->
+	<!--</a>-->
+<!--</div>-->
+<!--<p>Bot which helps you to communicate with other users announcing/searching groups within a location radius.</p>-->
+<!--</div>-->
 
