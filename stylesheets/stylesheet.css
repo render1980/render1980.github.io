@@ -448,3 +448,12 @@ Small Device Styles
   }
 
 }
+
+.projects-item {
+  
+}
+
+.projects-image img {
+  width: 500px;
+  height: 400px;
+}
