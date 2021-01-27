@@ -20,7 +20,7 @@ First, type `/start` in Bot and share your location. This location helps to sear
 
 If you want to search groups nearby, you can type `/list {radius}` and optionally define search radius as a parameter.
 
-If the search is successfull, you can request to join the group: `/join {group}`. Group admins will be notified about your join request. 
+If the search is successfull, you can request to join the group: `/join {group}`. Group admins will be notified about your join request.
 
 Maybe, you want to link your group to a location and announce it to the World. Please, use command with parameters: `/link {group_name} {group_description}`.
 
