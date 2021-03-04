@@ -376,16 +376,10 @@ Full-Width Styles
 }
 
 .contacts {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 10px;
-  z-index: 10;
-  padding: 10px 50px 10px 10px;
+  display: inline;
+  padding: 10px 50px 50px 10px;
   color: #fff;
   font-weight: 700;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
 }
 
 #icon_mail {
@@ -394,6 +388,10 @@ Full-Width Styles
 
 #icon_fb {
   background: url("../images/icon_fb.png") no-repeat 95% 50%;
+}
+
+#icon_reddit {
+  background: url("../images/icon_reddit.png") no-repeat 95% 50%;
 }
 
 #forkme_banner {
