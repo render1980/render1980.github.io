@@ -375,11 +375,16 @@ Full-Width Styles
   margin: 0 auto;
 }
 
+.dates {
+  margin-top: -20px;
+  color: #898c8f;
+  font-size: 0.75em;
+}
+
 .contacts {
   display: inline;
-  padding: 10px 50px 50px 10px;
   color: #fff;
-  font-weight: 700;
+  padding: 0px 80px 50px 0px;
 }
 
 #icon_mail {
@@ -392,6 +397,14 @@ Full-Width Styles
 
 #icon_reddit {
   background: url("../images/icon_reddit.png") no-repeat 95% 50%;
+}
+
+#icon_tg {
+  background: url("../images/icon_tg.png") no-repeat 95% 50%;
+}
+
+#icon_gh {
+  background: url("../images/icon_gh.png") no-repeat 95% 50%;
 }
 
 #forkme_banner {
