@@ -1,0 +1,13 @@
+---
+title: Site Tags
+layout: default
+---
+<ul>
+  {% assign tags = site.tags %}
+  {% for tag_item in tags %}
+  {% assign tag = tag_item | first %}
+  <li>
+    <a href="{{ site.url }}{{ site.baseurl }}/tags/{{ tag }}">{{ tag }}</a>
+  </li>
+  {% endfor %}
+</ul>

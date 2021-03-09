@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Usage JIRA API with Python"
+tag: python
 ---
 
 ## {{ page.title }}
@@ -12,6 +13,7 @@ jira = JIRA(url, basic_auth=(user, password))
 </code></pre>
 
 We can calcualte active tasks total time, which were changed today (for last 8 hours):
+
 <pre><code>updated_today_issues = jira.search_issues(
 	'assignee=%s and resolution=%s and updated %s and status in %s order by %s DESC',
 	(<span class="python_string">'currentUser()'</span>, <span class="python_string">'Unresolved'</span>, <span class="python_string">'>= -8h'</span>,
@@ -23,7 +25,8 @@ It's not suitable: resulting value summarize all time logged for active tasks fr
 
 And how can we take total time for all tasks, logged only today ?
 
-We need take all issues which have been updated today and find total time in worklogs I've updated: 
+We need take all issues which have been updated today and find total time in worklogs I've updated:
+
 <pre><code>logged_today_issues = jira.search_issues(
 		<span class="python_string">'assignee=%s and updated %s order by %s DESC'</span>,
 		(<span class="python_string">'currentUser()'</span>, <span class="python_string">'>= -8h'</span>, <span class="python_string">'updatedDate'</span>))

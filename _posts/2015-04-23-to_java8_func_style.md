@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Jump from Java 7 to Java 8"
+tag: java
 ---
 
 ## {{ page.title }}
@@ -8,6 +9,7 @@ title: "Jump from Java 7 to Java 8"
 After our team moved to java 8 (yes, it happened!), I've got the idea: "If I rewrite some pieces of one service using new powers of Java 8.."
 
 For example, we have some method, which on the base of documents aggregates common imformation according to them. Here's what old style looked like:
+
 <pre><code><span class="java_keyword">public</span> List&lt;Document&gt; getDocumentsStatistics(List&lt;Document&gt; documents)
     <span class="java_keyword">final</span> List&lt;Document&gt; documentsStatistics = <span class="java_keyword">new</span> ArrayList();
     <span class="java_keyword">for</span> (Document document : documents) {
@@ -28,6 +30,7 @@ For example, we have some method, which on the base of documents aggregates comm
 </code></pre>
 
 This method in new style:
+
 <pre><code><span class="java_keyword">private</span> List&lt;DocumentStatistics&gt; getDocumentsStatistics(Collection&lt;Document&gt; documents) {
    <span class="java_keyword">return new</span> ArrayList&lt;DocumentStatistics&gt;(
            documents
@@ -46,6 +49,7 @@ This method in new style:
 Not bad. More briefly, avoid mutable state.
 
 Next, we need take group for id. Early we did it so:
+
 <pre><code><span class="java_keyword">public</span> DocumentGroup getDocumentGroupById(String id) {
         <span class="java_keyword">for</span> (Map.Entry&lt;String, DocumentGroup&gt; group:
         	documentGroups.entrySet()) {
@@ -57,6 +61,7 @@ Next, we need take group for id. Early we did it so:
 </code></pre>
 
 Let's convert it:
+
 <pre><code><span class="java_keyword">final</span> DocumentGroup documentGroup = 
 	service.getKnowledgeBase()
                 .getDocumentGroups()
