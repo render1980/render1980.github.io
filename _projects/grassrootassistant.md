@@ -10,6 +10,8 @@ type: "telegram bot"
 
 ![](../images/grassroots-assistant.png)
 
+### Why do you need it
+
 Imagine, you already have a Telegram group (or want to create) and you need to share it with people not far from you which you might not even know.
 
 Another case: you are interested in groups within a geolocation radius (telegram private groups which are announced by someone). This Bot can help you with it.
