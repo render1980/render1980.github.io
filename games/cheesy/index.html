@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Cheesy</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      canvas {
+        background: #eee;
+        display: block;
+        margin: 0 auto;
+      }
+      #text {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="cheesyCanvas" width="640" height="480"></canvas>
+    <br />
+    <hr />
+    <div id="text"></div>
+
+    <!--<script type="module" src="main.js"></script>-->
+    <script>
+        /*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/js/main.js":
+/*!************************!*\
+  !*** ./src/js/main.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mechanics_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mechanics.js */ \"./src/js/mechanics.js\");\n\n\nvar canvas = document.getElementById(\"cheesyCanvas\");\nvar ctx = canvas.getContext(\"2d\");\nvar hintsEnabled = true;\n// objects parameters\n\nconst CUBE_X = 10;\nconst CUBE_Y = 150;\nconst CUBE_WIDTH = 40;\nconst CUBE_LENGTH = 40;\nconst PANTRY_SIZE = 6;\nconst PANTRY_Y = CUBE_Y;\nconst PANTRY_X = CUBE_X + CUBE_WIDTH + 50;\nconst PANTRY_OFFSET = 10;\nconst CARD_WIDTH = 60;\nconst CARD_LENGTH = 80;\nconst HIGHLIGHTED_CARD_BORDER_WIDTH = 4;\nconst HAND_Y = CUBE_Y * 2 + CARD_LENGTH;\nconst HAND_X = PANTRY_X;\nconst HAND_CARDS_OFFSET = CARD_WIDTH + PANTRY_OFFSET;\n\nmain();\n\nfunction main() {\n  (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.prepareTable)();\n  console.log((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getPantry)());\n  console.log((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getDeck)());\n\n  drawDeck();\n  drawCube((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getRandomCubeNumber)());\n  drawPantry();\n  drawText(\n    \"Let's play cheesy!\\nHere will be hints.\\nFirst, please roll the dice! Press mouse to do it.\"\n  );\n\n  addDocumentEventListeners();\n}\n\nfunction drawText(text) {\n  if (!hintsEnabled) {\n    return;\n  }\n  document.getElementById(\"text\").innerText = text;\n}\n\nfunction drawDeck() {\n  const DECK_X = 10;\n  const DECK_Y = 10;\n  const DECK_OFFSET = 5;\n  drawCardNum(DECK_X, DECK_Y, (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getRandomCubeNumber)());\n  drawCardNum(\n    DECK_X + DECK_OFFSET,\n    DECK_Y + DECK_OFFSET,\n    (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getRandomCubeNumber)()\n  );\n}\n\nfunction drawCube(num) {\n  ctx.clearRect(CUBE_X, CUBE_Y, CUBE_WIDTH, CUBE_LENGTH);\n  var img = new Image(CUBE_WIDTH, CUBE_LENGTH);\n  img.onload = function () {\n    ctx.drawImage(img, CUBE_X, CUBE_Y);\n    ctx.beginPath();\n    ctx.strokeRect(CUBE_X, CUBE_Y, CUBE_WIDTH, CUBE_LENGTH);\n  };\n\n  img.src = \"./images/cube\" + num + \".png\";\n}\n\nfunction drawPantry() {\n  var x = PANTRY_X;\n  for (var i = 0; i < PANTRY_SIZE; i++) {\n    drawCardNum(x, PANTRY_Y, (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getPantry)()[i].value);\n    x = x + CARD_WIDTH + PANTRY_OFFSET;\n  }\n}\n\nfunction drawCardNum(x, y, num) {\n  var img = new Image(CARD_WIDTH, CARD_LENGTH);\n  img.onload = function () {\n    drawClearCard(x, y);\n    ctx.drawImage(img, x, y);\n    ctx.beginPath();\n    ctx.lineWidth = 2;\n    ctx.strokeStyle = \"black\";\n    ctx.strokeRect(x, y, CARD_WIDTH, CARD_LENGTH);\n  };\n  img.src = \"./images/card\" + num + \".png\";\n}\n\nfunction drawCardNumHighlighted(x, y, num) {\n  var img = new Image(CARD_WIDTH, CARD_LENGTH);\n  img.onload = function () {\n    ctx.drawImage(img, x, y);\n    ctx.beginPath();\n    ctx.lineWidth = HIGHLIGHTED_CARD_BORDER_WIDTH;\n    ctx.strokeStyle = \"red\";\n    ctx.strokeRect(x, y, CARD_WIDTH, CARD_LENGTH);\n  };\n  img.src = \"./images/card\" + num + \".png\";\n}\n\nfunction drawCardBottom(x, y, isCatch) {\n  var img = new Image(CARD_WIDTH, CARD_LENGTH);\n  img.onload = function () {\n    ctx.drawImage(img, x, y);\n    ctx.beginPath();\n    ctx.lineWidth = 2;\n    ctx.strokeStyle = \"red\";\n    ctx.strokeRect(x, y, CARD_WIDTH, CARD_LENGTH);\n  };\n  var name;\n  if (isCatch) {\n    name = \"catch\";\n  } else {\n    name = \"cheese\";\n  }\n  img.src = \"./images/card_\" + name + \".png\";\n}\n\nfunction drawClearCard(x, y) {\n  ctx.clearRect(\n    x - 2,\n    y - 2,\n    CARD_WIDTH + HIGHLIGHTED_CARD_BORDER_WIDTH,\n    CARD_LENGTH + HIGHLIGHTED_CARD_BORDER_WIDTH\n  );\n}\n\nfunction drawWatchCard(num) {\n  let pantryCards = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getPantry)();\n  let cardIdxToWatch = num - 1;\n  let cardToWatch = pantryCards[cardIdxToWatch];\n\n  let cardX =\n    PANTRY_X + CARD_WIDTH * cardIdxToWatch + PANTRY_OFFSET * cardIdxToWatch;\n  setTimeout(function () {\n    drawCardNumHighlighted(cardX, PANTRY_Y, cardToWatch.value);\n  }, 1000);\n\n  setTimeout(function () {\n    drawCardBottom(cardX, PANTRY_Y, cardToWatch.catch);\n  }, 3000);\n\n  setTimeout(function () {\n    drawCardNum(cardX, PANTRY_Y, cardToWatch.value);\n  }, 5000);\n}\n\nfunction drawTakeToHand(num) {\n  let pantryCards = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getPantry)();\n  let cardIdxToTake = num - 1;\n  let cardToTake = pantryCards[cardIdxToTake];\n\n  if (cardToTake.value != (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCubeValue)()) {\n    return;\n  }\n\n  // calc coordinates of the card in pantry\n  let cardX =\n    PANTRY_X + CARD_WIDTH * cardIdxToTake + PANTRY_OFFSET * cardIdxToTake;\n  setTimeout(function () {\n    drawCardNumHighlighted(cardX, PANTRY_Y, cardToTake.value);\n  }, 1000);\n  setTimeout(function () {\n    drawClearCard(cardX, PANTRY_Y);\n  }, 3000);\n\n  setTimeout(function () {\n    drawOnHand(cardToTake);\n  }, 5000);\n\n  //takeToHand(cardIdxToTake);\n  let deck = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getDeck)();\n  let newCard = deck[deck.length - 1];\n  setTimeout(function () {\n    drawCardNum(cardX, PANTRY_Y, newCard.value);\n  }, 7000);\n  (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.takeToHand)(cardIdxToTake);\n  drawText((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentText)());\n}\n\nfunction drawOnHand(cardToTake) {\n  if (cardToTake.catch) {\n    drawCardBottom(HAND_X, HAND_Y, cardToTake.catch);\n  } else {\n    drawCardBottom(HAND_X + HAND_CARDS_OFFSET, HAND_Y, cardToTake.catch);\n  }\n}\n\nfunction drawRemove(num) {\n  let pantryCards = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getPantry)();\n  let cardIdxToRemove = num - 1;\n  let cardToRemove = pantryCards[cardIdxToRemove];\n\n  if (cardToRemove.value != (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCubeValue)()) {\n    return;\n  }\n\n  let cardX =\n    PANTRY_X + CARD_WIDTH * cardIdxToRemove + PANTRY_OFFSET * cardIdxToRemove;\n  setTimeout(function () {\n    drawCardNumHighlighted(cardX, PANTRY_Y, cardToRemove.value);\n  }, 1000);\n  setTimeout(function () {\n    drawClearCard(cardX, PANTRY_Y);\n  }, 3000);\n  (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.removeFromPantry)(cardIdxToRemove);\n  let deck = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getDeck)();\n  let newCard = deck[deck.length - 1];\n  setTimeout(function () {\n    drawCardNum(cardX, PANTRY_Y, newCard.value);\n  }, 5000);\n  drawText((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentText)());\n}\n\n// HANDLERS\nfunction addDocumentEventListeners() {\n  document.addEventListener(\"mousedown\", onMouseClick, false);\n  document.addEventListener(\"keydown\", onKeydown, false);\n}\n\nfunction onMouseClick() {\n  if ((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentState)() == 5) {\n    main();\n    (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.newRound)();\n    return;\n  }\n\n  if ((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCubePressed)()) {\n    return;\n  }\n  drawCube((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.pressCube)());\n  drawText((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentText)());\n}\n\nfunction onKeydown(event) {\n  let num = event.keyCode - 48;\n  if (num < 1 || num > 6) {\n    return;\n  }\n  let curState = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentState)();\n  let gameOver = false;\n  switch (curState) {\n    case 1:\n      drawWatchCard(num);\n      (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.newRound)();\n      drawText((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentText)());\n      break;\n    case 2:\n      drawText((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.chooseTakeOrRemove)(num));\n      break;\n    case 3:\n      drawTakeToHand(num);\n      gameOver = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.checkGameOver)();\n      if (gameOver) {\n        drawText((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentText)());\n      }\n      break;\n    case 4:\n      drawRemove(num);\n      gameOver = (0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.checkGameOver)();\n      if (gameOver) {\n        drawText((0,_mechanics_js__WEBPACK_IMPORTED_MODULE_0__.getCurrentText)());\n      }\n      break;\n  }\n}\n\n\n//# sourceURL=webpack://cheesy/./src/js/main.js?");
+
+/***/ }),
+
+/***/ "./src/js/mechanics.js":
+/*!*****************************!*\
+  !*** ./src/js/mechanics.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getRandomCubeNumber\": () => (/* binding */ getRandomCubeNumber),\n/* harmony export */   \"prepareTable\": () => (/* binding */ prepareTable),\n/* harmony export */   \"getPantry\": () => (/* binding */ getPantry),\n/* harmony export */   \"getDeck\": () => (/* binding */ getDeck),\n/* harmony export */   \"getCubePressed\": () => (/* binding */ getCubePressed),\n/* harmony export */   \"pressCube\": () => (/* binding */ pressCube),\n/* harmony export */   \"getCurrentText\": () => (/* binding */ getCurrentText),\n/* harmony export */   \"getCurrentState\": () => (/* binding */ getCurrentState),\n/* harmony export */   \"chooseTakeOrRemove\": () => (/* binding */ chooseTakeOrRemove),\n/* harmony export */   \"newRound\": () => (/* binding */ newRound),\n/* harmony export */   \"takeToHand\": () => (/* binding */ takeToHand),\n/* harmony export */   \"removeFromPantry\": () => (/* binding */ removeFromPantry),\n/* harmony export */   \"getCubeValue\": () => (/* binding */ getCubeValue),\n/* harmony export */   \"checkGameOver\": () => (/* binding */ checkGameOver)\n/* harmony export */ });\nconst cards = [\n  { value: 1, catch: true },\n  { value: 1, catch: true },\n  { value: 1, catch: false },\n  { value: 1, catch: false },\n  { value: 1, catch: false },\n  { value: 1, catch: false },\n  { value: 2, catch: true },\n  { value: 2, catch: true },\n  { value: 2, catch: false },\n  { value: 2, catch: false },\n  { value: 2, catch: false },\n  { value: 2, catch: false },\n  { value: 3, catch: true },\n  { value: 3, catch: true },\n  { value: 3, catch: true },\n  { value: 3, catch: false },\n  { value: 3, catch: false },\n  { value: 3, catch: false },\n  { value: 4, catch: true },\n  { value: 4, catch: true },\n  { value: 4, catch: true },\n  { value: 4, catch: false },\n  { value: 4, catch: false },\n  { value: 4, catch: false },\n  { value: 5, catch: true },\n  { value: 5, catch: true },\n  { value: 5, catch: false },\n  { value: 5, catch: false },\n  { value: 5, catch: false },\n  { value: 5, catch: false },\n  { value: 6, catch: true },\n  { value: 6, catch: true },\n  { value: 6, catch: false },\n  { value: 6, catch: false },\n  { value: 6, catch: false },\n  { value: 6, catch: false },\n];\n\nconst texts = [\n  \"New round has started!\\n\\\n  Roll the dice! Press mouse to do it.\",\n\n  \"Great! Now you can take any card from pantry and watch it.\\n\\\n  Please, press a keyboard button [1..6] that is the target card position (from the left).\",\n\n  \"Great! There is at least one card in pantry which value is related to the cube value. \\\n  You can choose any of two options: \\n\\\n  1. Take such card to your hand. \\n\\\n  2. Remove such card from the game. \\n\\\n  Please, press a keyboard button [1..2] to choose the action.\",\n\n  \"Please, press a keyboard button [1..6] that is the position (from the left)\\n\\\n  of the card you want to take to your hand.\",\n\n  \"Please, press a keyboard button [1..6] that is the position (from the left)\\n\\\n  of the card you want to remove from the game.\",\n\n  \"Game over! Press mouse to start again.\"\n];\n\nconst PANTRY_CARDS_COUNT = 6;\nconst TRAPS_COUNT = 3;\n\n/**\n* 0 - Beginning of the round\n* 1 - Watch a card from entry\n* 2 - Take to the hand / remove a card from the game\n* 3 - Take a card to the hand\n* 4 - Remove a card from the game\n*/\nvar curState = 0;\n// Table objects\nvar pantry = [];\nvar deck = [];\nvar discard = [];\nvar hand = [];\n// State\nvar cubePressed = false;\nvar cubeValue = 0;\n\n/**\n* Start a new game:\n* 1. Shuffle the cards\n* 2. Fill the pantry\n* 3. Fill the deck\n*/\nfunction prepareTable() {\n  var cards = shuffle();\n  // first 6 -> Pantry\n  pantry = cards.slice(0, PANTRY_CARDS_COUNT);\n  // others -> Deck\n  deck = cards.slice(PANTRY_CARDS_COUNT, cards.length);\n}\n\n/**\n* Start new round:\n* 1. Reset the state of the previous round\n* 2. Refill the pantry from the deck\n*\n* @returns void\n*/\nfunction newRound() {\n  curState = 0;\n  cubePressed = false;\n  // if pantry hasn't got enough cards => put required amount of cards to the pantry\n  let pantryCards = getPantry();\n  if (pantryCards.length < PANTRY_CARDS_COUNT && deck.length > 0) {\n    for (var i = 0; i < PANTRY_CARDS_COUNT - pantryCards.length; i++) {\n      let newCard = deck.pop();\n      pantry.push(newCard);\n    }\n  }\n}\n\n/**\n* The game is over if:\n* 1. No any cards in pantry OR\n* 2. Any player got three traps\n*\n* @returns true if game have to be finished; false - otherwise.\n*/\nfunction checkGameOver() {\n  let catchesOnHand = hand.filter(c => c.catch == true);\n  let isGameOver = deck.length < 0 || catchesOnHand.length >= TRAPS_COUNT;\n  if (isGameOver) {\n    curState = 5;\n  }\n  return isGameOver;\n}\n\nfunction getCurrentText() {\n  return texts[curState];\n}\n\nfunction getCurrentState() {\n  return curState;\n}\n\nfunction getCards() {\n  return cards;\n}\n\nfunction getPantry() {\n  return pantry;\n}\n\nfunction getCardFromPantry(idx) {\n  return pantry[idx];\n}\n\nfunction getDeck() {\n  return deck;\n}\n\nfunction getCubePressed() {\n  return cubePressed;\n}\n\nfunction setCubePressed(pressed) {\n  cubePressed = pressed;\n}\n\nfunction setCubeValue(value) {\n  cubeValue = value;\n}\n\nfunction getCubeValue() {\n  return cubeValue;\n}\n\n/**\n* Press the cube and define the next state based on the cube value.\n* If there is a similar value in any of cards in the pantry,\n* move to the state 2: let's take to the hand or remove the related card.\n*\n* Otherwise - move to the state 1: let's watch any card in the pantry.\n* */\nfunction pressCube() {\n  setCubePressed(true);\n  let cubeValue = getRandomCubeNumber()\n  setCubeValue(cubeValue);\n  //setPlayerCubeNumber(cubeNumber);\n  // When cube is pressed, check if any card with {cubeNumber} in pantry exists\n  let pantryCardsWithCubeValue = getPantry().filter(v => v.value == cubeValue);\n  if (pantryCardsWithCubeValue.length > 0) {\n    // Player can take related card to hand or remove it from the game\n    curState += 2;\n  } else {\n    // Player should take any card from pantry and watch it\n    curState += 1;\n  }\n  return cubeValue;\n}\n\nfunction shuffle() {\n  let shuffledCards = getCards().sort(() => Math.random() - 0.666);\n  console.log(shuffledCards);\n  return shuffledCards;\n}\n\nfunction getRandomCubeNumber() {\n  return Math.floor(Math.random() * Math.floor(7));\n}\n\nfunction chooseTakeOrRemove(num) {\n  if (num == 1 || num == 2) {\n    curState += num;\n  }\n  return texts[curState];\n}\n\nfunction takeToHand(cardIdx) {\n  let card = pantry.splice(cardIdx, 1);\n  hand.push(card);\n  newRound();\n}\n\nfunction removeFromPantry(cardIdx) {\n  console.log('pantry before removing: %o', pantry);\n  let card = pantry.splice(cardIdx, 1);\n  console.log('remove from pantry: %o', card);\n  console.log('pantry after removing: %o', pantry);\n  newRound();\n  console.log('deck after new round: %o', deck);\n}\n\n\n\n\n//# sourceURL=webpack://cheesy/./src/js/mechanics.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/main.js");
+/******/ 	
+/******/ })()
+;
+    </script>
+  </body>
+</html>
