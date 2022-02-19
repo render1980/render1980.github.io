@@ -10,8 +10,6 @@ type: "nix terminal tool"
 
 The tool inspired by <a href="https://github.com/thatcherclough/AsciiAnimator">AsciiAnimator</a> but written in Golang just for fun ;)
 
-<a href="https://asciinema.org/a/wP5I8OAFoDjrIVdW38bIeBIkc" target="_blank"><img src="https://asciinema.org/a/wP5I8OAFoDjrIVdW38bIeBIkc.svg" width="800"/></a>
-
 Animate your ASCII graphics in your terminal.
 
 ### How It Works
