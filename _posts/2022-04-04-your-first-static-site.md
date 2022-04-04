@@ -76,7 +76,7 @@ Create new file **/\_layouts/default.html**.
 
 `jubilant-pancake` - just a name of my repository used for the demo.
 
-Paste content into `default.html` below. Use can use [example](https://gist.githubusercontent.com/render1980/79fada63bd049f9fd0adbc87738f1db8/raw/4abb3844fe81661fe85252013c2a716ae397186d/default.html)
+Paste content into `default.html` below. Use can use [example](https://gist.githubusercontent.com/render1980/79fada63bd049f9fd0adbc87738f1db8/raw/2c4dec44597580727318d2f8c642df4e9d200d10/default.html)
 
 Click **Commit new file**
 
@@ -88,4 +88,32 @@ Now we are ready to reuse the previously created template for our site pages.
 
 Create **index.html** in the root, fill the content and commit changes.
 
-You can use [example](https://gist.githubusercontent.com/render1980/79fada63bd049f9fd0adbc87738f1db8/raw/4c6a176d64ca6b362c57a180bc1594ac53eed0b8/index.html)
+You can use [example](https://gist.githubusercontent.com/render1980/79fada63bd049f9fd0adbc87738f1db8/raw/2c4dec44597580727318d2f8c642df4e9d200d10/index.html)
+
+You can see the changes on your site less than in one minute. Go to your site page and refresh it. Wait until the changes become visible.
+
+#### Add posts
+
+You can use your static site like a blog. Let's create a simple example and see how we can use this function.
+
+Open **index.html** and add [this code](https://gist.github.com/render1980/79fada63bd049f9fd0adbc87738f1db8#file-index_with_posts-html-L10-L12) to the bottom of the page.
+
+It will make it possible to show a list with posts names on the main page.
+
+If you go to your site you won't see any changes. Nothing has happened because you still haven't created any post. Let's change it.
+
+Create new file **\_posts/2022-04-06-my-first-post.md**.
+
+Write e.g. `It's my first post and I did it myself!` in this file. Commit it.
+
+Wait and check the changes on your site. The post name should apppear on the main page of your site.
+
+#### Fix the links and names
+
+You can see that some names have `CHANGE_ME` prefix.
+
+![change me](../../../images/your_first_static_site/change_me.png)
+
+And now a small quest. You need to fix all names and links that are started from this prefix. All you need is in `default.html` layout.
+
+When everything is fixed all links should work and all names should be correct.
