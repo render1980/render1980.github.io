@@ -104,7 +104,17 @@ If you go to your site you won't see any changes. Nothing has happened because y
 
 Create new file **\_posts/2022-04-06-my-first-post.md**.
 
-Write e.g. `It's my first post and I did it myself!` in this file. Commit it.
+Paste
+
+```
+---
+layout: default
+title: "Jekyll: static websites generator"
+tag: jekyll
+---
+```
+
+inside of it and write e.g. `It's my first post and I did it myself!` below. Commit it.
 
 Wait and check the changes on your site. The post name should apppear on the main page of your site.
 
