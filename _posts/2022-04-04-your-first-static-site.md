@@ -155,6 +155,7 @@ When everything is fixed all links should work and all names should be correct.
 
 If you want to make your website even better you can think about:
 
+- Learning how to use <a href="https://jekyllrb.com/">Jekyll</a> utility to debug it locally on your machine
 - Adding <a href="https://peterroelants.github.io/posts/adding-tags-to-github-pages/">tags that can organize your posts into categories</a>
 - Making it possible to create <a href="https://stackoverflow.com/a/61740829">comments in your posts</a>
 - Using other <a href="https://pages.github.com/themes/">themes</a>
