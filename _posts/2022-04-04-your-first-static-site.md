@@ -24,6 +24,7 @@ tag: study
 <li><a href="#use-created-layout-for-the-main-page">Use created layout for the main page</a></li>
 <li><a href="#add-posts">Add posts</a></li>
 <li><a href="#fix-the-links-and-names">Fix the links and names</a></li>
+<li><a href="#bonus">Bonus</a></li>
 <li><a href="#what-is-next">What is next</a></li>
 </ul>
 </li>
@@ -150,6 +151,10 @@ You can see that some names have `CHANGE_ME` prefix.
 And now a small quest. Fix all names and links that are started from the prefix `CHANGE_ME`. All you need is in `default.html` layout.
 
 When everything is fixed all links should work and all names should be correct.
+
+#### Bonus
+
+As a bonus you can create an additional page with a link from the main page and add an image there. You can use <a href="https://www.w3schools.com/tags/tag_img.asp">image tag</a> for html or <a href="https://www.markdownguide.org/basic-syntax/#images">this</a> for markdown.
 
 #### What is next
 
