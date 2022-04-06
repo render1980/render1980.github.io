@@ -167,3 +167,18 @@ If you want to make your website even better you can think about:
 - Creating your own style and replacing the stylesheets used in a theme
 - Creating other pages
 - Studying javascript and creating your own scripts to interact with a user
+
+You can also take a look at next static sites examples based on github pages:
+
+- Excuse generator.<a href="https://github.com/lgg/excuse-generator"> Sources</a> <a href="https://lgg.github.io/excuse-generator/">site</a>
+- <a href="https://github.com/collections/github-pages-examples">here</a>
+
+HTML5 games examples for those people who are interested in browser games:
+
+- Tetris. <a href="https://github.com/ondras/custom-tetris">Sources</a> and <a href="http://ondras.github.io/custom-tetris/">game</a>
+- Drill bunny. <a href="https://github.com/DreamShowAdventures/LudumDare29">Sources</a> and <a href="http://dreamshowadventures.github.io/LudumDare29/">game</a>
+- Hyperspace Garbage Collector. <a href="https://github.com/razh/game-off-2013">Sources</a> and <a href="http://razh.github.io/game-off-2013/">game</a>
+- Jolly Jumper. <a href="https://github.com/shohan4556/jolly-jumper">Sources</a> and <a href="http://shohan4556.github.io/jolly-jumper/">game</a>
+- Snake. <a href="https://github.com/RabiRoshan/snake_game">Sources></a> and <a href="https://rabiroshan.github.io/snake_game/">game</a>
+- Spashal. <a href ="https://github.com/MrRar/spashal">Sources</a> and <a href="http://mrrar.github.io/spashal/">game</a>
+- Super Mario Bros. <a href="https://github.com/martindrapeau/backbone-game-engine">Sources</a> and <a href="http://martindrapeau.github.io/backbone-game-engine/super-mario-bros/index.html">game</a>
